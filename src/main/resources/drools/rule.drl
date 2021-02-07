@@ -1,0 +1,32 @@
+template header
+
+ruleName
+
+package com.droolstemplate.droolstemplate;
+
+
+import com.droolstemplate.droolstemplate.models.Customer
+import com.droolstemplate.droolstemplate.models.Data
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Date;
+
+template "Sample"
+
+rule "@{ruleName}"
+	dialect "java"
+	salience 100
+when
+    	data : Data( dateOfBirth != null )
+		customer : Customer( )
+    	
+then
+		modify( customer ) {
+				setDateString( data.getDateOfBirth().toString())
+		}
+
+end
+
+end template
